@@ -1,0 +1,54 @@
+.cell {
+    width: 50px;
+    height: 50px;
+    background-color: grey;
+}
+
+.mine {
+    background-color: red;
+}
+
+
+ul {
+    list-style: none;
+    display: absolute;
+    
+}
+li {
+  display: inline-block;
+  
+  
+}
+
+input {
+    visibility: hidden;
+    
+}
+label {
+  cursor: pointer;
+}
+
+input:checked + label {
+    background: grey;
+    border: 1px solid;
+    box-shadow: 1px 1px;
+    border-radius: 5px;
+}
+
+.level-select {
+    background-color: rgb(112, 112, 189);
+    height: 90px;   
+    font-size: 2rem;
+    margin: auto;
+    box-sizing: border-box;
+    display: absolute;
+    
+}
+
+.game-info {
+    font-size: 2rem;
+    display: absolute;
+    font-weight: bolder;
+    text-align: center;
+
+}

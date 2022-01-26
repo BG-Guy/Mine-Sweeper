@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <title>Mine-Sweeper</title>
+</head>
+<body onload="initGame()" >
+    <div class="game-container">
+        <div class="game-levels">
+            <ul>
+                <li>EASY</li>
+                <li>MEDIUM</li>
+                <li>HARD</li>
+            </ul>
+        </div>
+        <div class="game-info">
+            <span>LIVES</span>
+            <span class="status"></span>
+            <span class="timer"></span>
+        </div>
+        <div class="board-container"></div>
+    </div>
+    <script src="./utils.js"></script>
+    <script src="./game.js"></script>
+</body>
+</html>
