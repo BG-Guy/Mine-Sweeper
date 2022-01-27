@@ -9,18 +9,28 @@
 </head>
 <body onload="initGame()" >
     <div class="game-container">
-        <div class="game-levels">
+        <div class="level-select">
             <ul>
-                <li>EASY</li>
-                <li>MEDIUM</li>
-                <li>HARD</li>
+                <li>
+                    <input onclick="setGame(this)" name="level" value="2" id="4" type="radio" checked >
+                    <label for="4">Easy</label>
+                </li>
+                <li>
+                    <input onclick="setGame(this)" name="level" value="12" id="8" type="radio">            
+                    <label for="8">Medium</label>
+                </li>
+                <li>
+                    <input onclick="setGame(this)" name="level" value="30" id="12" type="radio" >
+                    <label for="12">Hard</label>                    
+                </li>
             </ul>
         </div>
         <div class="game-info">
-            <span>LIVES</span>
-            <span class="status"></span>
-            <span class="timer"></span>
+            <span>LIVES <span class="livesLeft"></span></span>
+            <span style="cursor: pointer;" onclick="initGame()" class="status">🙂</span>
+            <span  class="timer">0</span>
         </div>
+        <div class="game-msg"></div>
         <div class="board-container"></div>
     </div>
     <script src="./utils.js"></script>

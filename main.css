@@ -2,10 +2,18 @@
     width: 50px;
     height: 50px;
     background-color: grey;
+    font-size: 30px;
+    text-align: center;
+}
+
+.shown {
+    background-color: lightblue;
 }
 
 .mine {
     background-color: red;
+    font-size: 30px;   
+    text-align: center;
 }
 
 
@@ -16,8 +24,6 @@ ul {
 }
 li {
   display: inline-block;
-  
-  
 }
 
 input {
@@ -36,19 +42,38 @@ input:checked + label {
 }
 
 .level-select {
-    background-color: rgb(112, 112, 189);
+    background-color: grey;
     height: 90px;   
     font-size: 2rem;
     margin: auto;
     box-sizing: border-box;
-    display: absolute;
+    display: flex;
     
 }
 
 .game-info {
     font-size: 2rem;
-    display: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     font-weight: bolder;
-    text-align: center;
+    background-color: grey;
+}
 
+.liveLeft {
+    margin-right: 10px;
+}
+
+/* .status {
+        
+}
+
+.timer {
+
+} */
+
+.game-container {
+    position: absolute;
+    align-items: center;
+    margin: auto;
 }
