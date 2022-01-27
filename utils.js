@@ -26,20 +26,22 @@ function stopWatch() {
 
 
 function negsCount(cellI, cellJ, board) {
-let  negsCounter = 0
+let negsCounter = 0
 
   for (var i = cellI - 1; i <= cellJ + 1; i++) {
         if (i < 0 || i >= board.length) continue;
         for (var j = cellI - 1; j <= cellJ + 1; j++) {
             if (j < 0 || j >= board[i].length) continue;
             if (i === cellI && j === cellJ) continue;
-          if (board[i][j].isMine) negsCounter++
+          if (board[i][j].isMine) {
+            negsCounter++
                  
         }
     }
     
     return negsCounter
      
+  }
 }
 
 
@@ -47,16 +49,15 @@ let  negsCounter = 0
 
 
   
-  // location such as: {i: 2, j: 7}
-  function renderCell(location, value) {
-    // Select the elCell and set the value
-    var elCell = document.querySelector(`.cell-${location.i}-${location.j}`);
-    elCell.innerHTML = value;
-  }
+  // // location such as: {i: 2, j: 7}
+  // function renderCell(location, value) {
+  //   // Select the elCell and set the value
+  //   var elCell = document.querySelector(`.cell-${location.i}-${location.j}`);
+  //   elCell.innerHTML = value;
+  // }
 
   function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
   }
-  

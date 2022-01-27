@@ -6,16 +6,12 @@ var gGame = {
 
 }
 
-
 const MINE = '💣'
 const FLAG = '🚩'
 
-
-  
-
-
 function initGame() {
     gBoard = buildBoard()
+
     renderBoard(gBoard, '.board-container')
     
 }
@@ -41,6 +37,7 @@ function buildBoard() {
             }
             
             if (i === mines[0].i && j === mines[0].j || i === mines[1].i && j === mines[1].j) {
+                
                 cell.isMine = true
             }
 
@@ -48,39 +45,42 @@ function buildBoard() {
             board[i][j] = cell
         }
     }
-
+    
     console.log(board)
     return board
 }
 
 
-function renderBoard(board, selector) {
+function renderBoard(gBoard, selector) {
     var strHTML = '<table border="0"><tbody>';
 
-    for (var i = 0; i < board.length; i++) {
+    for (var i = 0; i < gBoard.length; i++) {
       strHTML += '<tr>';
-      for (var j = 0; j < board[0].length; j++) {
-        var cell = board[i][j];
+      for (var j = 0; j < gBoard[0].length; j++) {
+        
+        var cell = gBoard[i][j];        
+        
         var className = '';
-
         if (cell.isMine) {
         className = 'cell mine'
 
         }
-        else className = 'cell'
-        let mineNegsCount = negsCount(i, j, board)
+        else {
+            className = 'cell'
+            cell.minesAroundCount = negsCount(i,j,gBoard)
         strHTML += `<td oncontextmenu="return false;" onmousedown="cellClicked(event,this,${i},${j},)" 
-        data-mineNegs=${mineNegsCount} data-i=${i} data.j=${j} class="${className}"></td>`
+        data-i=${i} data.j=${j} class="${className}"></td>`
       }
 
       strHTML += '</tr>'
     }
     strHTML += '</tbody></table>';
 
-
     
+    console.log(gBoard)
     var elContainer = document.querySelector(selector);
     elContainer.innerHTML = strHTML;
+    }
 }
 
 
@@ -112,14 +112,14 @@ function checkGameOver() {
     gGame.lives--
 }
 
+
 function setMinesNegsCount(gBoard) {
     for (let i = 0; i < gBoard.length; i++) {
         for (let j = 0; j < gBoard[i]; j++) {
-            var minesCount = negsCount(i , j , gBoard)
-            gBoard[i][j].minesAroundCount = minesCount
-            
-        }
-        
+            if (gBoard.isMines) {
+                gBoard.minesAroundCount = negsCount(i,j,gBoard)
+            } 
+        }   
     }
 }
 
