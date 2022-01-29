@@ -181,9 +181,13 @@ function cellClicked(event,elCell, i, j) {
     else {
       elRandomSafeCell.innerHTML = ''
     }
+    var elMiley = document.querySelector('.smiley')
+    elSmiley.innerHTML = '🔮'
     setTimeout(() => {
       elRandomSafeCell.classList.remove('shown')
       elRandomSafeCell.innerHTML = ''
+      var elMiley = document.querySelector('.smiley')
+      elSmiley.innerHTML = '😃'
     }
       , 1000)
   }

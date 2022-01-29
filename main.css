@@ -1,6 +1,6 @@
 td {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     box-shadow: inset rgba(0, 0, 0, 0.35) 0px 10px 30px;;
 
 }
@@ -59,7 +59,7 @@ td:active {
 .game-container {
     position: center;
     text-align: center;
-    width: 80vh;
+    width: 100vh;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     background-color: rgb(229,228,226);
 
@@ -68,17 +68,16 @@ td:active {
 
 .board-container {
     display: flex;
-    width: 80vh;
+    width: 100vh;
     justify-content: center;
 
 }
 
 
 .game-status {
-    padding: 10px;
-    width: 80vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    font-size: 30px;
 }
 
 
@@ -86,13 +85,25 @@ td:active {
     display: flex;
     justify-content: space-around;
     position: relative;
-    padding: 20px;
+
 }
+
+.smiley {
+    font-size: 30px;
+  
+}
+
+
 
 .levels button {
     font-size: 20px;
     font-weight: bolder;
     cursor: pointer;
+
+}
+
+button:hover {
+    background-color: lightblue;
 
 }
 
@@ -113,7 +124,8 @@ td:active {
 
 
 .time {
-    width: 50px;
+    width: 80px;
+    height: 30px;
     border: 1px solid black;
 }
 
@@ -124,7 +136,6 @@ td:active {
 }
 
 .help-buttons button {
-    font-size: 20px ;
     cursor: pointer;
 }
 
