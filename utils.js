@@ -198,3 +198,69 @@ function clearStopWatch() {
 
 //Run the function safe click
 
+// function hintMode(gBoard) {
+//   gSafeClicks--
+//   // get random cell and check if mine, if so turn the class
+//   var elMines = []
+//   for (let i = 0; i < gGame.size; i++) {
+//     for (let j = 0; j < gGame.size; j++) {
+//       var currCell = gBoard[i][j]
+//       var elCell = document.querySelector(`[data-i="${i}"][data-j="${j}"]`)
+
+//       if (currCell.isMine) elMines.push(elCell)
+//     }    
+//   }
+//   console.log(`NUMBER OF MINES ${elMines.length}`)
+//   var randIdx = getRandomInt(0, elMines.length)
+//   var elHints = document.querySelector('.hints-left')
+//   elHints.innerHTML = '💡'.repeat(gGame.hints) 
+//   elMines[randIdx].classList.add('mine')
+//   setTimeout(() => elMines[randIdx].classList.remove('mine'), 1000)
+
+// }
+
+// safeClick DONE
+function safeClick() {
+  var res = []
+  if (gGame.isFirstClick) {
+    gInterval = setInterval(startStopWatch, 10)
+    gGame.isFirstClick = false;
+    //if first click render mines
+    getMines(gBoard, gLevel.mines);
+    setMinesNegsCount();
+}
+
+else {
+  for (let i = 0; i < gBoard.length; i++) {
+    for (let j = 0; j < gBoard[j]; j++) {
+        var currCell = gBoard[i][j]
+        var elCell = document.querySelector(`[data-i="${i}"][data-j="${j}"]`)
+
+        if (!currCell.isMine) {
+          elCell.classList.add('shown')
+          elCell.innerHTML = currCell.minesAroundCount
+          gGame.safeClick--
+          setTimeout(() => {
+            elCell.classList.remove('shown')
+            elCell.innerHTML = ''
+          }, 2000)
+          return
+        }
+    }   
+  }
+ }
+}
+
+
+//a function that something from a box check it for something and returns it its not
+// for (i = 0; i < 1 ; i++) if (el = 'something thats not') i-- 
+
+// keepScore DONE
+function keepScore(gTimer, level) {
+
+  if (level === 'easy' && gTimer > gBestTime.easy) gStorage.setItem(gBestTime.easy, gTimer)
+  if (level === 'medium' && gTimer > gBestTime.medium) gStorage.setItem(gBestTime.medium, gTimer)
+  if (level === 'hard' && gTimer > gBestTime.hard) gStorage.setItem(gBestTime.hard, gTimer)
+  console.log(myStorage.bestTime)
+
+}

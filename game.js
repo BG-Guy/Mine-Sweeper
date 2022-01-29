@@ -3,16 +3,17 @@ var gBoard;
 var gGame = {
   isOn: true,
   safeClicks: 3,
+  hints: 3,
   isFirstClick: true,
   shownCount: 0,
   markedCount: 0,
+  hintMode: false,
 };
 
 
 var elSmiley = document.querySelector('.smiley')
 
 
-var gSafeClicks
 var gTimer
 var gInterval
 var gStorage
@@ -41,37 +42,44 @@ function initGame() {
     renderBoard(gBoard, '.board-container');  
     clearStopWatch()
     elSmiley.innerHTML = SMILEY
-    updateLives()
-    gSafeClicks = 3
-
+    
     gGame = {
-        isOn: true,
-        isFirstClick: true,
-        shownCount: 0,
-        markedCount: 0,
-        safeClicks: 3,
+      isOn: true,
+      safeClicks: 3,
+      hints: 3,
+      isFirstClick: true,
+      shownCount: 0,
+      markedCount: 0,
+      hintMode: false
       
     }
+    updateLives()
+    updateSafeClicks()
+    updateHints()
+
   }
 
 function cellClicked(event,elCell, i, j) {
 
-    if (gGame.isHintMode) {
-      safeClick(elCell, i, j)
-      return
-    }
-    console.log(event)
+
     var currCell = gBoard[i][j]
-    console.log(currCell)
     //if first click
     if (gGame.isFirstClick) {
-      console.log('first click');
+      console.log(`FIRST CLICK`);
       gInterval = setInterval(startStopWatch, 10)
       gGame.isFirstClick = false;
       //if first click render mines
       getMines(gBoard, gLevel.mines);
       setMinesNegsCount();
     }
+
+    if (gGame.hintMode) {
+      useHint(i,j)
+      setTimeout(() => hintModeOff(i,j), 1000)
+      return
+    }
+
+
     if (!event.button) {
       if (!gGame.isOn || currCell.isShown || currCell.isMarked) return
       console.log(`left mouse click`)
@@ -124,11 +132,12 @@ function cellClicked(event,elCell, i, j) {
   }
 
   function updateLives() {
-    gGame.lives--
     var elLives = document.querySelector('.lives')
-    elLives.innerHTML = `Lives ${'❤️'.repeat(gLevel.lives)}`
+    elLives.innerHTML = `${'❤️'.repeat(gLevel.lives)}`
     
   }
+
+  
 
   function sevenBoomMode () {
     for (let i = 0; i < gBoard[i]; i++) {
@@ -146,28 +155,45 @@ function cellClicked(event,elCell, i, j) {
 
   
   function safeClick() {
-    gGame.safeClicks--
     // get random cell and check if mine, if so turn the class
     var elSafeCells = []
+    var currCells = []
     for (let i = 0; i < gLevel.size; i++) {
       for (let j = 0; j < gLevel.size; j++) {
         var currCell = gBoard[i][j]
         var elCell = document.querySelector(`[data-i="${i}"][data-j="${j}"]`)
-        if (!currCell.isMine && !currCell.isMarked) elSafeCells.push(elCell)
+        if (!currCell.isMine && !currCell.isMarked && !currCell.isShown) {
+          elSafeCells.push(elCell);
+          currCells.push(currCell); 
     }
   }
+}  
+  console.log(elSafeCells);
     var randIdx = getRandomInt(0, elSafeCells.length)
-    var elRandomSafeCell = elSafeCells[randIdx]
-    var elSafeClicks = document.querySelector('.safe-click')
-    elSafeClicks.innerHTML = '🧿'.repeat(gGame.safeClicks) 
+    var elRandomSafeCell = elSafeCells[randIdx] 
+    gGame.safeClicks--
+    updateSafeClicks()
     elRandomSafeCell.classList.add('shown')
-    currCell.minesAroundCount ? elRandomSafeCell.innerHTML = currCell.minesAroundCount : elRandomSafeCell.innerHTML = '';
+    if (currCells[randIdx].minesAroundCount) {
+      elRandomSafeCell.innerHTML = currCells[randIdx].minesAroundCount
+    }
+
+    else {
+      elRandomSafeCell.innerHTML = ''
+    }
     setTimeout(() => {
       elRandomSafeCell.classList.remove('shown')
       elRandomSafeCell.innerHTML = ''
     }
       , 1000)
-  
+  }
+
+
+  function updateSafeClicks() {
+     
+    var elSafeClicks = document.querySelector('.safe-click')
+    elSafeClicks.innerHTML = `${'🧿'.repeat(gGame.safeClicks)}`
+    
   }
 
   
@@ -185,3 +211,25 @@ function cellClicked(event,elCell, i, j) {
     console.log(myStorage.bestTime)
   
   }
+
+  // function expandShown(board, rowIdx, colIdx) {
+
+  //   for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+  //     if (i < 0 || i >= board.length) continue;
+  //     for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+  //         var currCell = board[i][j]
+  //         if (j < 0 || j > board[0].length - 1) continue;
+  //         if (i === rowIdx && j === colIdx) continue;
+  //           var elCell = document.querySelector(`[data-i="${i}"][data-j="${j}"]`)
+  //           elCell.classList.add('shown')
+  //           if (currCell.minesAroundCount) elCell.innerHTML = currCell.minesAroundCount
+  //           if (!currCell.minesAroundCount) elCell.innerHTML = ''
+  //           if (currCell.isMine) elCell.innerHTML = MINE
+  //           elCell.classList.add('.shown')
+  //           setInterval(() => {
+  //               currCell.innerHTML = ''
+  //               elCell.classList.remove('.shown')
+  //           }, 2000);
+  //       }
+  //   }
+  // }

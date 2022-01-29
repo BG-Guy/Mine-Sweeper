@@ -1,12 +1,28 @@
 td {
     width: 50px;
     height: 50px;
+    box-shadow: inset rgba(0, 0, 0, 0.35) 0px 10px 30px;;
+
 }
 
+td:hover {
+    background-color: lightblue;
 
+}
 
 td:active {
-    animation: shake .5s 2 alternate;
+    animation: shake .3s 2 alternate;
+
+    box-shadow: inset rgba(0, 0, 0, 0.35) 0px 10px 30px;    transition: 0.3s;
+
+}
+
+.cell:hover {
+    background-color: lightblue;
+    transition: .2s;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    
+
 
 }
 
@@ -17,22 +33,44 @@ td:active {
     box-shadow: inset 1px 1px 1px 1px black;
 }
 
+
+
 .shown {
     background-color: lightblue;
-    box-shadow: inset 1px 1px 2px 2px rgb(70, 144, 168);
-    transition: 0.3s;
+    box-shadow: inset rgba(0, 0, 0, 0.35) 0px 5px 15px;    transition: 0.3s;
+
 }
+
+
 
 .mine:active {
     animation: boom .2s 10 alternate;
     background-color: red;
 }
 
+.mine {
+    background-color: red;
+}
+
+.mine:hover {
+    background-color: red;
+}
+
 .game-container {
     position: center;
     text-align: center;
-    width: 80vh
+    width: 80vh;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    background-color: rgb(229,228,226);
+
     
+}
+
+.board-container {
+    display: flex;
+    width: 80vh;
+    justify-content: center;
+
 }
 
 
@@ -40,47 +78,43 @@ td:active {
     padding: 10px;
     width: 80vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 
 .levels {
     display: flex;
     justify-content: space-around;
+    position: relative;
+    padding: 20px;
 }
 
 .levels button {
     font-size: 20px;
     font-weight: bolder;
+    cursor: pointer;
+
 }
+
 
 .hints {
-    display: flex;
-    justify-content: space-around;
-}
-
-.hints-left {
     cursor: pointer;
 }
+
 
 .safe-click {
     cursor: pointer;
 }
 
-.board-container {
-    display: flex;
-    justify-content: center;
-    width: 80vh;
+.simley {
+    width: 10px;
+    height: 10px;
 }
+
 
 .time {
     width: 50px;
     border: 1px solid black;
-}
-
-.hint-mode {
-    font-size: 30px;
-    font-weight: bolder;
 }
 
 .help-buttons {
@@ -100,8 +134,8 @@ td:active {
     20% { transform: translate(-6px, -4px); }
     20% { transform: translate(-8px,  4px); }
     20% { transform: translate(-10px, -10px); }
-    20% { transform: translate(-10px, -10px); }
     20% { transform: translate(-8px,  4px); }
+    20% { transform: translate(-6px, -4px); }
     
 
   }
@@ -110,8 +144,8 @@ td:active {
 
     25% { transform: translate(-6px, 0px); }
     25% { transform: translate(5px,  0px); }
-    25% { transform: translate(-6px, 0px); }
     25% { transform: translate(6px, 0px); }
+    25% { transform: translate(-6px, 0px); }
     
     
 
