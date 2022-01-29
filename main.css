@@ -1,79 +1,118 @@
-.cell {
+td {
     width: 50px;
     height: 50px;
+}
+
+
+
+td:active {
+    animation: shake .5s 2 alternate;
+
+}
+
+.cell {
     background-color: grey;
     font-size: 30px;
     text-align: center;
+    box-shadow: inset 1px 1px 1px 1px black;
 }
 
 .shown {
     background-color: lightblue;
+    box-shadow: inset 1px 1px 2px 2px rgb(70, 144, 168);
+    transition: 0.3s;
 }
 
-.mine {
+.mine:active {
+    animation: boom .2s 10 alternate;
     background-color: red;
-    font-size: 30px;   
-    text-align: center;
 }
-
-
-ul {
-    list-style: none;
-    display: absolute;
-    
-}
-li {
-  display: inline-block;
-}
-
-input {
-    visibility: hidden;
-    
-}
-label {
-  cursor: pointer;
-}
-
-input:checked + label {
-    background: grey;
-    border: 1px solid;
-    box-shadow: 1px 1px;
-    border-radius: 5px;
-}
-
-.level-select {
-    background-color: grey;
-    height: 90px;   
-    font-size: 2rem;
-    margin: auto;
-    box-sizing: border-box;
-    display: flex;
-    
-}
-
-.game-info {
-    font-size: 2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-weight: bolder;
-    background-color: grey;
-}
-
-.liveLeft {
-    margin-right: 10px;
-}
-
-/* .status {
-        
-}
-
-.timer {
-
-} */
 
 .game-container {
-    position: absolute;
-    align-items: center;
-    margin: auto;
+    position: center;
+    text-align: center;
+    width: 80vh
+    
 }
+
+
+.game-status {
+    padding: 10px;
+    width: 80vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.levels {
+    display: flex;
+    justify-content: space-around;
+}
+
+.levels button {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.hints {
+    display: flex;
+    justify-content: space-around;
+}
+
+.hints-left {
+    cursor: pointer;
+}
+
+.safe-click {
+    cursor: pointer;
+}
+
+.board-container {
+    display: flex;
+    justify-content: center;
+    width: 80vh;
+}
+
+.time {
+    width: 50px;
+    border: 1px solid black;
+}
+
+.hint-mode {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.help-buttons {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.help-buttons button {
+    font-size: 20px ;
+    cursor: pointer;
+}
+
+
+@keyframes shake {
+
+    20% { transform: translate(-6px, -4px); }
+    20% { transform: translate(-8px,  4px); }
+    20% { transform: translate(-10px, -10px); }
+    20% { transform: translate(-10px, -10px); }
+    20% { transform: translate(-8px,  4px); }
+    
+
+  }
+
+  @keyframes boom {
+
+    25% { transform: translate(-6px, 0px); }
+    25% { transform: translate(5px,  0px); }
+    25% { transform: translate(-6px, 0px); }
+    25% { transform: translate(6px, 0px); }
+    
+    
+
+  }
